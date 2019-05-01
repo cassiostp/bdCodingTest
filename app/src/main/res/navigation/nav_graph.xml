@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/nav_graph">
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph"
+            app:startDestination="@id/googleFragment">
 
+    <fragment android:id="@+id/googleFragment" android:name="com.example.myapplication.GoogleFragment"
+              android:label="fragment_google" tools:layout="@layout/fragment_google"/>
 </navigation>
