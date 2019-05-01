@@ -1,7 +1,6 @@
 package com.example.myapplication
 
 import android.os.Bundle
-import android.util.Log
 import com.google.android.material.navigation.NavigationView
 import androidx.core.view.GravityCompat
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -15,6 +14,8 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigation
 import com.example.myapplication.viewmodel.MainViewModel
+import android.content.Intent
+import android.net.Uri
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
@@ -34,7 +35,19 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
         val projects = viewModel.projectsList
         projects.observe(this, Observer {
-            
+            val list = it.items ?: emptyArray()
+            val menu = nav_view.menu
+            val submenu = menu.addSubMenu("Github Repos")
+            for (projectModel in list) {
+                val item = submenu.add(projectModel.name)
+                item.setOnMenuItemClickListener {
+                    val url = projectModel.htmlUrl
+                    val intent = Intent(Intent.ACTION_VIEW)
+                    intent.data = Uri.parse(url)
+                    startActivity(intent)
+                    true
+                }
+            }
         })
         viewModel.searchAndroidProjects()
         nav_view.setNavigationItemSelectedListener(this)
