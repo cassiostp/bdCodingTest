@@ -6,4 +6,6 @@
 
     <fragment android:id="@+id/googleFragment" android:name="com.example.myapplication.GoogleFragment"
               android:label="fragment_google" tools:layout="@layout/fragment_google"/>
+    <fragment android:id="@+id/buttonsFragment" android:name="com.example.myapplication.ButtonsFragment"
+              android:label="fragment_buttons" tools:layout="@layout/fragment_buttons"/>
 </navigation>

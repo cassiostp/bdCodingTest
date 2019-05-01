@@ -65,8 +65,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                     .navigate(R.id.googleFragment, null, navOptions)
             }
             R.id.nav_buttons -> {
-                val toast = Toast.makeText(applicationContext, "alert", Toast.LENGTH_LONG)
-                toast.show()
+                val navOptions = NavOptions.Builder().setPopUpTo(R.id.buttonsFragment, true).build()
+                Navigation.findNavController(this@MainActivity, R.id.nav_host_fragment)
+                    .navigate(R.id.buttonsFragment, null, navOptions)
             }
         }
 
